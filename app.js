@@ -1,10 +1,21 @@
-// mongodb+srv://dev:f1IgnyWrl6gVj2w4@cluster0.y9x0w.mongodb.net/MERNdb?retryWrites=true&w=majority
-
 
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
+const db=require("./confg/keys").mongoURI;
 
-app.get("/", (req, res) => res.send("Wolves gravesto"));
+
+mongoose
+    .connect(db, {useNewUrlParser:true})
+    .then(() => console.log("Connnected to mongoDB"))
+    .catch(err => console.log(err));
+
+app.get("/", (req, res) =>{
+    // debugger
+    console.log(res);
+    res.send("Wolves gravesto");
+
+})
 
 const port = process.env.PORT || 5000;
 
