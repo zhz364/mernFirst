@@ -5,12 +5,19 @@ const mongoose = require("mongoose");
 const db=require("./confg/keys").mongoURI;
 const users = require("./routes/api/users");
 const tweets = require("./routes/api/tweets");
+const bodyParser = require('body-parser');
+
 const User = require('./models/User');
 
 mongoose
     .connect(db, {useNewUrlParser:true})
     .then(() => console.log("Connnected to mongoDB"))
     .catch(err => console.log(err));
+
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
+app.use(bodyParser.json());
 
 app.get("/", (req, res) =>{
     const user = new User({
