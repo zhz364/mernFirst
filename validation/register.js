@@ -1,14 +1,14 @@
 const Validator = require("validator");
 const validText = require("./valid-text");
 
-module.export = function validateRegisterInput(data){
+module.exports = function validateRegisterInput(data){
     let errors ={};
-    data.handle = validText(data.handle) ? data.handle : ""
-    data.email = validText(data.email) ? data.email : ""
-    data.password = validText(data.password) ? data.password : ""
-    data.password2 = validText(data.password2) ? data.password2 : ""
+    data.handle = validText(data.handle) ? data.handle : '';
+    data.email = validText(data.email) ? data.email : "";
+    data.password = validText(data.password) ? data.password : "";
+    data.password2 = validText(data.password2) ? data.password2 : "";
 
-    if(Validator.isLength(data.handle, {min:2, max:30})){
+    if(!Validator.isLength(data.handle, {min:2, max:30})){
         errors.handle = "Handle mush be between 2 and 30 chars";
     }
 
@@ -20,7 +20,7 @@ module.export = function validateRegisterInput(data){
         errors.email = "Email field is required";
     }
 
-    if(Validator.isEmail(data.email)){
+    if(!Validator.isEmail(data.email)){
         errors.email = "Email is invalid";
     }
 
@@ -28,8 +28,8 @@ module.export = function validateRegisterInput(data){
         errors.password = "Password field is required";
     }
 
-    if(Validator.isLength(data.password, {min:2, max:30})){
-        errors.password = "Password mush be between 2 and 30 chars";
+    if(!Validator.isLength(data.password, {min:6, max:30})){
+        errors.password = "Password mush be between 6 and 30 chars";
     }
     
     if (!Validator.equals(data.password, data.password2)){
