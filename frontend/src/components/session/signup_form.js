@@ -12,9 +12,13 @@ class SignupForm extends React.Component {
       password2: '',
       errors: {}
     };
-
+    this.password = React.createRef()
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
+  }
+
+  componentDidMount(){
+    this.password.current.focus()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -63,20 +67,21 @@ class SignupForm extends React.Component {
                 value={this.state.email}
                 onChange={this.update('email')}
                 placeholder="Email"
-                required autoFocus
+                
               />
 
               <label for="input-1">
                 <span className="label-text">Email</span>
+                <span className="label-text">Hello</span>
                 <span className="nav-dot"></span>
-                {/* <div className="signup-button-trigger">Sign up</div> */}
+                <div className="signup-button-trigger">Sign up</div>
               </label>
             
               <input id="input-2" type="text"
                 value={this.state.handle}
                 onChange={this.update('handle')}
                 placeholder="Handle"
-                required
+                
               />
               <label for="input-2">
                 <span className="label-text">Handle</span>
@@ -87,6 +92,7 @@ class SignupForm extends React.Component {
                 type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
+                ref={this.password}
                 // placeholder="Password"
                 placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
               />
@@ -111,7 +117,7 @@ class SignupForm extends React.Component {
             {/* <input type="submit" value="Submit" /> */}
             <button className="btn" type="submit">Create your Account</button>
             <p className="tip">Press Tab</p>
-            {/* <div className="signup-button">Sign up</div> */}
+            <div className="signup-button">Sign up</div>
             {this.renderErrors()}
         </form>
       </div>

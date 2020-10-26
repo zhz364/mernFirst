@@ -63,12 +63,12 @@ class LoginForm extends React.Component {
                 value={this.state.email}
                 onChange={this.update('email')}
                 placeholder="Email"
-                required autoFocus
+                autoFocus
               />
               <label for="input-1">
                 <span className="label-text">Email</span>
                 <span className="nav-dot"></span>
-                {/* <div className="signup-button-trigger">Sign up</div> */}
+                <div className="signup-button-trigger">Sign up</div>
               </label>
 
               <input id="input-2"
