@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import './form.css'
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -17,8 +18,8 @@ class SignupForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.signedIn === true) {
-      this.props.history.push('/');
+    if (nextProps.currentUser === true) {
+      this.props.history.push('/tweets');
     }
 
     this.setState({errors: nextProps.errors})
@@ -58,35 +59,60 @@ class SignupForm extends React.Component {
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit}>
-          <div className="login-form">
-            <br/>
-              <input type="text"
+              <input id="input-1" type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
                 placeholder="Email"
+                required autoFocus
               />
-            <br/>
-              <input type="text"
+
+              <label for="input-1">
+                <span className="label-text">Email</span>
+                <span className="nav-dot"></span>
+                {/* <div className="signup-button-trigger">Sign up</div> */}
+              </label>
+            
+              <input id="input-2" type="text"
                 value={this.state.handle}
                 onChange={this.update('handle')}
                 placeholder="Handle"
+                required
               />
-            <br/>
-              <input type="password"
+              <label for="input-2">
+                <span className="label-text">Handle</span>
+                <span className="nav-dot"></span>
+              </label>
+           
+              <input id="input-3"
+                type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
-                placeholder="Password"
+                // placeholder="Password"
+                placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
               />
-            <br/>
-              <input type="password"
+              <label for="input-3">
+                <span className="label-text">Password</span>
+                <span className="nav-dot"></span>
+              </label>
+            
+              <input id="input-4"
+                type="password"
                 value={this.state.password2}
                 onChange={this.update('password2')}
-                placeholder="Confirm Password"
+                // placeholder="Confirm Password"
+                placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
               />
-            <br/>
-            <input type="submit" value="Submit" />
+
+              <label for="input-4">
+                <span className="label-text">Confirm Password</span>
+                <span className="nav-dot"></span>
+              </label>
+            
+            {/* <input type="submit" value="Submit" /> */}
+            <button className="btn" type="submit">Create your Account</button>
+            <p className="tip">Press Tab</p>
+            {/* <div className="signup-button">Sign up</div> */}
             {this.renderErrors()}
-          </div>
         </form>
       </div>
     );
